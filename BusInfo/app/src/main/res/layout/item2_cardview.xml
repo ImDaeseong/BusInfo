@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cv1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="4dp"
+    android:background="@color/colorAccent"
+    app:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cL1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv1"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="첫번째 도착예정"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tv2"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="#94989A"
+            android:textSize="12dp"
+            android:gravity="right|center_vertical"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv1"/>
+
+        <View
+            android:id="@+id/line1"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#EDEDED"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="두번째 도착예정"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tv4"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line1" />
+
+        <TextView
+            android:id="@+id/tv4"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="#94989A"
+            android:textSize="12dp"
+            android:gravity="right|center_vertical"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv3"/>
+
+        <View
+            android:id="@+id/line2"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#EDEDED"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv4" />
+
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="정류소 고유번호"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tv6"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="#94989A"
+            android:textSize="12dp"
+            android:gravity="right|center_vertical"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv5"/>
+
+        <View
+            android:id="@+id/line3"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#EDEDED"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv6" />
+
+
+        <TextView
+            android:id="@+id/tv7"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="노선명"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tv8"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line3" />
+
+        <TextView
+            android:id="@+id/tv8"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="#94989A"
+            android:textSize="12dp"
+            android:gravity="right|center_vertical"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv7"/>
+
+        <View
+            android:id="@+id/line4"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#EDEDED"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv8" />
+
+
+        <TextView
+            android:id="@+id/tv9"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="정류소 ID"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tv10"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line4" />
+
+        <TextView
+            android:id="@+id/tv10"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="#94989A"
+            android:textSize="12dp"
+            android:gravity="right|center_vertical"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv9"/>
+
+        <View
+            android:id="@+id/line5"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#EDEDED"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv10" />
+
+
+        <TextView
+            android:id="@+id/tv11"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="left|center_vertical"
+            android:text="정류소명"
+            android:textColor="#000000"
+            android:textSize="12dp"
+            app:layout_constraintEnd_toStartOf="@id/tv12"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/line5" />
+
+        <TextView
+            android:id="@+id/tv12"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="5dp"
+            android:text=""
+            android:textColor="#94989A"
+            android:textSize="12dp"
+            android:gravity="right|center_vertical"
+            android:maxLines="1"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv11"/>
+
+        <View
+            android:id="@+id/line6"
+            style="@style/Divider"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#EDEDED"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv12" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

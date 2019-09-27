@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="city">
+        <item >금천03</item>
+        <item >1500고양</item>
+        <item >9707</item>
+        <item >830파주</item>
+    </string-array>
+</resources>
