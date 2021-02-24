@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#243447"
+    android:contentInsetStart="0dp"
+    app:contentInsetStart="0dp"
+    android:layout_height="49dp">
+
+    <ImageView
+        android:id="@+id/busbi"
+        android:layout_width="60dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bus" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cLbusmenu"
+        android:layout_width="52dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <Button
+            android:id="@+id/busmenu"
+            android:layout_width="21dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="14dp"
+            android:clickable="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            style="?android:attr/borderlessButtonStyle"
+            android:background="@drawable/mainmenuico" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
