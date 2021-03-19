@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="item1Cell" id="KGk-i7-Jjw" customClass="item1Cell" customModule="BusInfo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="505" height="145"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="505" height="145"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAt-bQ-cCM" customClass="roundbackground" customModule="BusInfo">
+                        <rect key="frame" x="10" y="5" width="485" height="136"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="첫번째 도착예정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-sp-r41" userLabel="label1" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="5" y="5" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="gUW-Hw-Ld7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uGn-tc-FDO" userLabel="label2" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="245" y="5" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="pOQ-pm-z2D"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkQ-fz-571" userLabel="line1" customClass="tableline" customModule="BusInfo">
+                                <rect key="frame" x="5" y="25" width="475" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="zfK-Qu-FJ7"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="두번째 도착예정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TUF-PK-7wc" userLabel="label3" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="5" y="26" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="lyr-2m-W8R"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lv-7H-2OF" userLabel="label4" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="245" y="26" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="t40-Fc-Pb2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qCY-sY-fp9" userLabel="line2" customClass="tableline" customModule="BusInfo">
+                                <rect key="frame" x="5" y="46" width="475" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="dte-Es-27F"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정류소 고유번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKx-FT-m24" userLabel="label5" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="5" y="47" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ac6-bl-dEs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Sd-wB-rFJ" userLabel="label6" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="245" y="47" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="zPW-5L-hbn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LxB-Lv-JYO" userLabel="line3" customClass="tableline" customModule="BusInfo">
+                                <rect key="frame" x="5" y="67" width="475" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Qda-MJ-yH3"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="노선명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvB-z1-DYm" userLabel="label7" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="5" y="68" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="lRw-39-dcM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d2g-IN-YNP" userLabel="label8" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="245" y="68" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="oPy-JK-vbt"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGz-B1-Ujq" userLabel="line4" customClass="tableline" customModule="BusInfo">
+                                <rect key="frame" x="5" y="88" width="475" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="XmM-V4-ZwZ"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정류소 ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WP1-Ns-fw3" userLabel="label9" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="5" y="89" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="GWO-WH-qj6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ipg-zG-yQz" userLabel="label10" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="245" y="89" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="mj3-rF-rWK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5zI-5s-RNJ" userLabel="line5" customClass="tableline" customModule="BusInfo">
+                                <rect key="frame" x="5" y="109" width="475" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="uvs-Gw-Lwf"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="정류소명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JG-Zj-rNK" userLabel="label11" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="5" y="110" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="tbU-Zz-H03"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="NO"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqm-pn-dhX" userLabel="label12" customClass="LabelEx" customModule="BusInfo">
+                                <rect key="frame" x="245" y="110" width="235" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="GHs-ir-b4i"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="grayColor" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0uC-d3-Cgg" userLabel="line6" customClass="tableline" customModule="BusInfo">
+                                <rect key="frame" x="5" y="130" width="475" height="1"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="txM-i0-2hn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WP1-Ns-fw3" firstAttribute="leading" secondItem="LAt-bQ-cCM" secondAttribute="leading" constant="5" id="0SH-Ot-3za"/>
+                            <constraint firstItem="5bX-sp-r41" firstAttribute="top" secondItem="LAt-bQ-cCM" secondAttribute="top" constant="5" id="1Lc-aM-3sZ"/>
+                            <constraint firstItem="7Sd-wB-rFJ" firstAttribute="width" secondItem="RKx-FT-m24" secondAttribute="width" id="1Vy-Sl-I7Y"/>
+                            <constraint firstAttribute="trailing" secondItem="d2g-IN-YNP" secondAttribute="trailing" constant="5" id="2Vo-Lu-CsG"/>
+                            <constraint firstAttribute="trailing" secondItem="gqm-pn-dhX" secondAttribute="trailing" constant="5" id="2fa-p7-b1R"/>
+                            <constraint firstItem="LxB-Lv-JYO" firstAttribute="top" secondItem="RKx-FT-m24" secondAttribute="bottom" id="4yu-pR-rac"/>
+                            <constraint firstItem="TUF-PK-7wc" firstAttribute="leading" secondItem="LAt-bQ-cCM" secondAttribute="leading" constant="5" id="5FK-Gb-Wcd"/>
+                            <constraint firstItem="9Lv-7H-2OF" firstAttribute="width" secondItem="TUF-PK-7wc" secondAttribute="width" id="5NX-7w-oJk"/>
+                            <constraint firstItem="5zI-5s-RNJ" firstAttribute="trailing" secondItem="ipg-zG-yQz" secondAttribute="trailing" id="7I3-wD-cgg"/>
+                            <constraint firstItem="4JG-Zj-rNK" firstAttribute="leading" secondItem="LAt-bQ-cCM" secondAttribute="leading" constant="5" id="7d7-YL-cf6"/>
+                            <constraint firstAttribute="bottom" secondItem="0uC-d3-Cgg" secondAttribute="bottom" constant="5" id="8JK-nB-pzs"/>
+                            <constraint firstAttribute="trailing" secondItem="ipg-zG-yQz" secondAttribute="trailing" constant="5" id="99F-tH-Art"/>
+                            <constraint firstItem="gqm-pn-dhX" firstAttribute="leading" secondItem="4JG-Zj-rNK" secondAttribute="trailing" constant="5" id="9Cb-9D-rfC"/>
+                            <constraint firstItem="TUF-PK-7wc" firstAttribute="top" secondItem="hkQ-fz-571" secondAttribute="bottom" id="AHC-vV-sfA"/>
+                            <constraint firstItem="qCY-sY-fp9" firstAttribute="trailing" secondItem="9Lv-7H-2OF" secondAttribute="trailing" id="ANy-FP-mng"/>
+                            <constraint firstItem="5bX-sp-r41" firstAttribute="leading" secondItem="LAt-bQ-cCM" secondAttribute="leading" constant="5" id="C0T-61-EDa"/>
+                            <constraint firstItem="RKx-FT-m24" firstAttribute="leading" secondItem="LAt-bQ-cCM" secondAttribute="leading" constant="5" id="DvI-VO-KSe"/>
+                            <constraint firstItem="hkQ-fz-571" firstAttribute="leading" secondItem="5bX-sp-r41" secondAttribute="leading" id="Eqd-GK-TgL"/>
+                            <constraint firstItem="FGz-B1-Ujq" firstAttribute="trailing" secondItem="d2g-IN-YNP" secondAttribute="trailing" id="FHW-by-6Pr"/>
+                            <constraint firstItem="9Lv-7H-2OF" firstAttribute="leading" secondItem="TUF-PK-7wc" secondAttribute="trailing" constant="5" id="Fl0-Es-VfQ"/>
+                            <constraint firstAttribute="trailing" secondItem="9Lv-7H-2OF" secondAttribute="trailing" constant="5" id="GYd-N3-Wnx"/>
+                            <constraint firstItem="d2g-IN-YNP" firstAttribute="top" secondItem="LxB-Lv-JYO" secondAttribute="bottom" id="HsW-BE-iCN"/>
+                            <constraint firstItem="qCY-sY-fp9" firstAttribute="leading" secondItem="TUF-PK-7wc" secondAttribute="leading" id="Jar-m3-dv7"/>
+                            <constraint firstItem="LxB-Lv-JYO" firstAttribute="leading" secondItem="RKx-FT-m24" secondAttribute="leading" id="JoX-p9-gw5"/>
+                            <constraint firstItem="ipg-zG-yQz" firstAttribute="top" secondItem="FGz-B1-Ujq" secondAttribute="bottom" id="KIH-ho-OMN"/>
+                            <constraint firstItem="zvB-z1-DYm" firstAttribute="leading" secondItem="LAt-bQ-cCM" secondAttribute="leading" constant="5" id="L0Y-d4-md2"/>
+                            <constraint firstItem="0uC-d3-Cgg" firstAttribute="top" secondItem="4JG-Zj-rNK" secondAttribute="bottom" id="MX9-xX-JGu"/>
+                            <constraint firstItem="5zI-5s-RNJ" firstAttribute="top" secondItem="WP1-Ns-fw3" secondAttribute="bottom" id="N2e-ax-f0X"/>
+                            <constraint firstItem="FGz-B1-Ujq" firstAttribute="leading" secondItem="zvB-z1-DYm" secondAttribute="leading" id="Njh-xN-dh3"/>
+                            <constraint firstItem="zvB-z1-DYm" firstAttribute="top" secondItem="LxB-Lv-JYO" secondAttribute="bottom" id="P01-GK-tLa"/>
+                            <constraint firstAttribute="trailing" secondItem="uGn-tc-FDO" secondAttribute="trailing" constant="5" id="Ux8-cC-XDY"/>
+                            <constraint firstItem="WP1-Ns-fw3" firstAttribute="top" secondItem="FGz-B1-Ujq" secondAttribute="bottom" id="Vne-oB-xBF"/>
+                            <constraint firstAttribute="trailing" secondItem="7Sd-wB-rFJ" secondAttribute="trailing" constant="5" id="WaC-eZ-IMU"/>
+                            <constraint firstItem="RKx-FT-m24" firstAttribute="top" secondItem="qCY-sY-fp9" secondAttribute="bottom" id="YHR-Hi-osP"/>
+                            <constraint firstItem="hkQ-fz-571" firstAttribute="trailing" secondItem="uGn-tc-FDO" secondAttribute="trailing" id="cxD-Tl-vBP"/>
+                            <constraint firstItem="d2g-IN-YNP" firstAttribute="width" secondItem="zvB-z1-DYm" secondAttribute="width" id="dAw-g9-joq"/>
+                            <constraint firstItem="gqm-pn-dhX" firstAttribute="top" secondItem="5zI-5s-RNJ" secondAttribute="bottom" id="eJ0-eg-VXH"/>
+                            <constraint firstItem="ipg-zG-yQz" firstAttribute="leading" secondItem="WP1-Ns-fw3" secondAttribute="trailing" constant="5" id="eMd-TE-sez"/>
+                            <constraint firstItem="qCY-sY-fp9" firstAttribute="top" secondItem="TUF-PK-7wc" secondAttribute="bottom" id="fFI-3u-42p"/>
+                            <constraint firstItem="0uC-d3-Cgg" firstAttribute="trailing" secondItem="gqm-pn-dhX" secondAttribute="trailing" id="gJ6-3Z-BcK"/>
+                            <constraint firstItem="FGz-B1-Ujq" firstAttribute="top" secondItem="zvB-z1-DYm" secondAttribute="bottom" id="guQ-d2-eYB"/>
+                            <constraint firstItem="0uC-d3-Cgg" firstAttribute="leading" secondItem="4JG-Zj-rNK" secondAttribute="leading" id="hdP-XK-aB3"/>
+                            <constraint firstAttribute="height" constant="136" id="iwP-mf-nDq"/>
+                            <constraint firstItem="ipg-zG-yQz" firstAttribute="width" secondItem="WP1-Ns-fw3" secondAttribute="width" id="kEc-BV-cGR"/>
+                            <constraint firstItem="9Lv-7H-2OF" firstAttribute="top" secondItem="hkQ-fz-571" secondAttribute="bottom" id="kOU-pI-GhP"/>
+                            <constraint firstItem="d2g-IN-YNP" firstAttribute="leading" secondItem="zvB-z1-DYm" secondAttribute="trailing" constant="5" id="kVc-ka-RDs"/>
+                            <constraint firstItem="hkQ-fz-571" firstAttribute="top" secondItem="5bX-sp-r41" secondAttribute="bottom" id="lKb-fr-rRJ"/>
+                            <constraint firstItem="4JG-Zj-rNK" firstAttribute="top" secondItem="5zI-5s-RNJ" secondAttribute="bottom" id="lUZ-1Y-57y"/>
+                            <constraint firstItem="5zI-5s-RNJ" firstAttribute="leading" secondItem="WP1-Ns-fw3" secondAttribute="leading" id="lz6-Ia-yDv"/>
+                            <constraint firstItem="7Sd-wB-rFJ" firstAttribute="leading" secondItem="RKx-FT-m24" secondAttribute="trailing" constant="5" id="mla-zG-PDD"/>
+                            <constraint firstItem="gqm-pn-dhX" firstAttribute="width" secondItem="4JG-Zj-rNK" secondAttribute="width" id="myT-5Q-E1P"/>
+                            <constraint firstItem="uGn-tc-FDO" firstAttribute="leading" secondItem="5bX-sp-r41" secondAttribute="trailing" constant="5" id="o8T-ac-B2M"/>
+                            <constraint firstItem="uGn-tc-FDO" firstAttribute="top" secondItem="LAt-bQ-cCM" secondAttribute="top" constant="5" id="q5h-aC-4vJ"/>
+                            <constraint firstItem="uGn-tc-FDO" firstAttribute="width" secondItem="5bX-sp-r41" secondAttribute="width" id="uXN-gX-Hoh"/>
+                            <constraint firstItem="LxB-Lv-JYO" firstAttribute="trailing" secondItem="7Sd-wB-rFJ" secondAttribute="trailing" id="vbd-fD-5WN"/>
+                            <constraint firstItem="7Sd-wB-rFJ" firstAttribute="top" secondItem="qCY-sY-fp9" secondAttribute="bottom" id="ykX-k7-Iad"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="LAt-bQ-cCM" secondAttribute="trailing" constant="10" id="9Z4-yE-pqD"/>
+                    <constraint firstAttribute="bottom" secondItem="LAt-bQ-cCM" secondAttribute="bottom" constant="5" id="VJF-xs-f0u"/>
+                    <constraint firstItem="LAt-bQ-cCM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="eat-lr-H3k"/>
+                    <constraint firstItem="LAt-bQ-cCM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="uJ6-w2-ccg"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="label10" destination="ipg-zG-yQz" id="Lfe-1G-kag"/>
+                <outlet property="label12" destination="gqm-pn-dhX" id="WST-BP-qEh"/>
+                <outlet property="label2" destination="uGn-tc-FDO" id="GJy-Dq-KC1"/>
+                <outlet property="label4" destination="9Lv-7H-2OF" id="4Yy-Hz-RkA"/>
+                <outlet property="label6" destination="7Sd-wB-rFJ" id="c3o-kz-T5L"/>
+                <outlet property="label8" destination="d2g-IN-YNP" id="pR4-dV-oRJ"/>
+            </connections>
+            <point key="canvasLocation" x="138.40579710144928" y="103.79464285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

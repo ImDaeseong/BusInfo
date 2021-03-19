@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.2.2)
+  - SideMenu (6.4.9)
+  - SwiftyXMLParser (5.0.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - SideMenu
+  - SwiftyXMLParser
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SideMenu
+    - SwiftyXMLParser
+
+SPEC CHECKSUMS:
+  Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  SideMenu: 8ef57a3cfc024a2d3fc1c036c7fe98537baec9e0
+  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+
+PODFILE CHECKSUM: a76b0a8cdf88c3bebac0557bafc4425d64fb7e85
+
+COCOAPODS: 1.10.0
