@@ -1,14 +1,11 @@
 package com.daeseong.businfo.BusAPI;
 
 import android.util.Log;
-
 import com.daeseong.businfo.BusApplication;
 import com.daeseong.businfo.BusData.getArrInfoByRouteAllData;
 import com.daeseong.businfo.HttpUtil;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,7 +24,7 @@ public class getArrInfomainAPI {
             String busRouteId = String.format("busRouteId=%s", sbusRouteId);
             String ServiceKey = String.format("&ServiceKey=%s", BusApplication.getInstance().API_Key);
             String sUrlParams = String.format("%s%s%s", defaulturl, busRouteId, ServiceKey);
-            String sResult = HttpUtil.GetBusDataResult(sUrlParams);
+            String sResult = HttpUtil.getBusDataResult(sUrlParams);
 
             InputStream inputStream = new ByteArrayInputStream(sResult.getBytes());
 

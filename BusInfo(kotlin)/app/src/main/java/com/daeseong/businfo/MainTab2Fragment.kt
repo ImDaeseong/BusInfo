@@ -49,7 +49,6 @@ class MainTab2Fragment : Fragment() {
                 BusApplication.getInstance().ClearClipboardText()
 
             } catch (ex: Exception) {
-                Log.e(tag, ex.message)
             }
         }
 
@@ -71,7 +70,6 @@ class MainTab2Fragment : Fragment() {
                 getArrInfoByRouteAllTask().execute(sbusRouteId)
 
             } catch (ex: Exception) {
-                Log.e(tag, ex.message)
             }
         })
 
@@ -114,7 +112,6 @@ class MainTab2Fragment : Fragment() {
                 rv1!!.layoutManager = LinearLayoutManager(mContext)
                 rv1!!.adapter = tab2Adapter
             } catch (ex: java.lang.Exception) {
-                Log.e(tag, ex.message)
             }
         }
 

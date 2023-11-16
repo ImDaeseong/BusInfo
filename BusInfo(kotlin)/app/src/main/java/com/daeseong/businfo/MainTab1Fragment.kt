@@ -75,7 +75,6 @@ class MainTab1Fragment : Fragment() {
                 getArrInfoByRouteAllTask().execute(sbusRouteId)
 
             } catch (ex: Exception) {
-                Log.e(tag, ex.message)
             }
         })
         return viewGroup
@@ -114,7 +113,6 @@ class MainTab1Fragment : Fragment() {
                 rv1!!.layoutManager = LinearLayoutManager(mContext)
                 rv1!!.adapter = tab2Adapter
             } catch (ex: java.lang.Exception) {
-                Log.e(tag, ex.message)
             }
         }
 

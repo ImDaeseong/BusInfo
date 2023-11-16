@@ -6,23 +6,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.daeseong.businfo.BusData.getBusRouteListData;
-
 import java.util.ArrayList;
 
 public class Tab4Adapter extends RecyclerView.Adapter<Tab4Adapter.Tab4ViewHolder> {
 
     private static final String TAG = Tab4Adapter.class.getSimpleName();
-
-
     private ArrayList<getBusRouteListData> getBusRouteListDataList;
+    private OnItemClickListener onItemClickListener;
 
-    public Tab4Adapter(ArrayList<getBusRouteListData> getBusRouteListDataList){
+    public interface OnItemClickListener {
+        void onItemClick(String busRouteId);
+    }
+
+    public Tab4Adapter(ArrayList<getBusRouteListData> getBusRouteListDataList, OnItemClickListener onItemClickListener) {
         this.getBusRouteListDataList = getBusRouteListDataList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -35,43 +36,7 @@ public class Tab4Adapter extends RecyclerView.Adapter<Tab4Adapter.Tab4ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull Tab4ViewHolder holder, final int position) {
-
-        holder.tv2.setText(getBusRouteListDataList.get(position).getBusRouteId());
-        holder.tv4.setText(getBusRouteListDataList.get(position).getBusRouteNm());
-        holder.tv6.setText(getBusRouteListDataList.get(position).getEdStationNm());
-        holder.tv8.setText(getBusRouteListDataList.get(position).getStStationNm());
-        holder.tv10.setText(getBusRouteListDataList.get(position).getTerm());
-
-        holder.save1.setOnClickListener(new OnSingleClickListener() {
-            @Override
-            public void onSingleClick(View v) {
-
-                try{
-
-                    //BusApplication.getInstance().Toast( "즐겨찾기 항목이 추가 되었습니다.", false);
-
-                }catch (Exception ex){
-                    Log.e(TAG, ex.getMessage());
-                }
-
-            }
-        });
-
-        /*
-        holder.tv2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                try {
-
-                    BusApplication.getInstance().SetClipboardText(getBusRouteListDataList.get(position).getBusRouteId());
-
-                }catch (Exception ex){
-                }
-
-            }
-        });
-        */
+        holder.bind(getBusRouteListDataList.get(position));
     }
 
     @Override
@@ -79,7 +44,7 @@ public class Tab4Adapter extends RecyclerView.Adapter<Tab4Adapter.Tab4ViewHolder
         return (getBusRouteListDataList != null) ? getBusRouteListDataList.size() : 0;
     }
 
-    public class Tab4ViewHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
+    public class Tab4ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView save1;
         private TextView tv2;
@@ -88,35 +53,49 @@ public class Tab4Adapter extends RecyclerView.Adapter<Tab4Adapter.Tab4ViewHolder
         private TextView tv8;
         private TextView tv10;
 
-        public Tab4ViewHolder(@NonNull View item){
-            super(item);
+        public Tab4ViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-            try {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && onItemClickListener != null) {
+                        onItemClickListener.onItemClick(getBusRouteListDataList.get(position).getBusRouteId());
+                    }
+                }
+            });
 
-                item.setOnClickListener(this);
+            save1 = itemView.findViewById(R.id.save1);
+            tv2 = itemView.findViewById(R.id.tv2);
+            tv4 = itemView.findViewById(R.id.tv4);
+            tv6 = itemView.findViewById(R.id.tv6);
+            tv8 = itemView.findViewById(R.id.tv8);
+            tv10 = itemView.findViewById(R.id.tv10);
 
-                save1 = item.findViewById(R.id.save1);
-                tv2 = item.findViewById(R.id.tv2);
-                tv4 = item.findViewById(R.id.tv4);
-                tv6 = item.findViewById(R.id.tv6);
-                tv8 = item.findViewById(R.id.tv8);
-                tv10 = item.findViewById(R.id.tv10);
+            save1.setOnClickListener(new OnSingleClickListener() {
+                @Override
+                public void onSingleClick(View v) {
+                    try {
 
-            }catch (Exception ex){
-                Log.e(TAG, ex.getMessage());
-            }
+                        String busRouteId = tv2.getText().toString();
+                        BusApplication.getInstance().setClipboardText(busRouteId);
 
+                        BusApplication.getInstance().showToast("즐겨찾기 항목이 추가 되었습니다.", false);
+
+                    } catch (Exception ex) {
+                        Log.e(TAG, ex.getMessage());
+                    }
+                }
+            });
         }
 
-        @Override
-        public void onClick(View v) {
-
-            try {
-                BusApplication.getInstance().SetClipboardText(tv2.getText().toString());
-            }catch (Exception ex){
-                Log.e(TAG, ex.getMessage());
-            }
-
+        public void bind(getBusRouteListData data) {
+            tv2.setText(data.getBusRouteId());
+            tv4.setText(data.getBusRouteNm());
+            tv6.setText(data.getEdStationNm());
+            tv8.setText(data.getStStationNm());
+            tv10.setText(data.getTerm());
         }
     }
 }

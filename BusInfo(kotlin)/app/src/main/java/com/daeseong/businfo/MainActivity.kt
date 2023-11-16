@@ -65,7 +65,6 @@ class MainActivity : AppCompatActivity() {
                 try {
 
                 } catch (ex: Exception) {
-                    Log.e(tag, ex.message)
                 }
             }
         })
@@ -89,7 +88,6 @@ class MainActivity : AppCompatActivity() {
                     nCurrentIndex = tab.position
                     Main_viewPager!!.currentItem = nCurrentIndex
                 } catch (ex: java.lang.Exception) {
-                    Log.e(tag, ex.message)
                 }
             }
 
@@ -122,7 +120,6 @@ class MainActivity : AppCompatActivity() {
                 inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
             }
         } catch (ex: java.lang.Exception) {
-            Log.e(tag, ex.message)
         }
     }
 

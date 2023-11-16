@@ -2,41 +2,32 @@ package com.daeseong.businfo;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
-public class MainPagerAdapter extends FragmentPagerAdapter {
+public class MainPagerAdapter extends FragmentStatePagerAdapter {
 
     private static final String TAG = MainPagerAdapter.class.getSimpleName();
 
-    private static final int TAB_COUNT = 4;
     private String titles[] = {"나의경로", "버스조회", "즐겨찾기", "버스번호"};
-    private Fragment[] viewFragment = new Fragment[4];
 
-    public MainPagerAdapter(FragmentManager fm){
-        super(fm);
+    public MainPagerAdapter(FragmentManager fm) {
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     @Override
     public Fragment getItem(int position) {
         switch (position) {
-            case 0: {
-                viewFragment[0] = new MainTab1Fragment();
-                return viewFragment[0];
-            }
-            case 1: {
-                viewFragment[1] = new MainTab2Fragment();
-                return viewFragment[1];
-            }
-            case 2: {
-                viewFragment[2] = new MainTab3Fragment();
-                return viewFragment[2];
-            }
-            case 3: {
-                viewFragment[3] = new MainTab4Fragment();
-                return viewFragment[3];
-            }
+            case 0:
+                return new MainTab1Fragment();
+            case 1:
+                return new MainTab2Fragment();
+            case 2:
+                return new MainTab3Fragment();
+            case 3:
+                return new MainTab4Fragment();
+            default:
+                return null;
         }
-        return null;
     }
 
     @Override
@@ -46,10 +37,6 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return TAB_COUNT;
-    }
-
-    public Fragment getFragment(int position){
-        return viewFragment[position];
+        return titles.length;
     }
 }

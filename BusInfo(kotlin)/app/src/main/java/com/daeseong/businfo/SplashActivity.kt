@@ -61,7 +61,6 @@ class SplashActivity : AppCompatActivity() {
                 handler = null
             }
         } catch (ex: Exception) {
-            Log.e(tag, ex.message)
         }
     }
 }

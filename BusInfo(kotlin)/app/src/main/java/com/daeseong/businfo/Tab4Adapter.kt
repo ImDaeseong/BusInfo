@@ -37,7 +37,6 @@ class Tab4Adapter(private val getBusRouteListDataList: ArrayList<getBusRouteList
 
                     BusApplication.getInstance().Toast( "즐겨찾기 항목이 추가 되었습니다.", false)
                 } catch (ex: java.lang.Exception) {
-                    Log.e(tag, ex.message)
                 }
             }
         })
@@ -67,7 +66,6 @@ class Tab4Adapter(private val getBusRouteListDataList: ArrayList<getBusRouteList
                 tv8 = item.findViewById(R.id.tv8)
                 tv10 = item.findViewById(R.id.tv10)
             } catch (ex: Exception) {
-                Log.e(tag, ex.message)
             }
         }
 

@@ -57,7 +57,6 @@ class MainTab4Fragment : Fragment() {
                 getBusRouteListTask().execute(sBusNum)
 
             } catch (ex: Exception) {
-                Log.e(tag, ex.message)
             }
         })
 
@@ -101,7 +100,6 @@ class MainTab4Fragment : Fragment() {
                 rv1!!.adapter = tab4Adapter
 
             } catch (ex: java.lang.Exception) {
-                Log.e(tag, ex.message)
             }
         }
 

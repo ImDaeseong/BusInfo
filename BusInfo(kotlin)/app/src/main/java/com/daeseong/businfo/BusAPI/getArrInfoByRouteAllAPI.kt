@@ -80,7 +80,6 @@ class getArrInfoByRouteAllAPI {
             }
 
         } catch (ex: java.lang.Exception) {
-            Log.e(tag, ex.message)
             return false
         }
 

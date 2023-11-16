@@ -9,52 +9,33 @@ import java.net.URL;
 
 public class HttpUtil {
 
-    public static String GetBusDataResult(String sUrl) {
+    public static String getBusDataResult(String urlString) {
 
-        HttpURLConnection httpURLConnection = null;
-        InputStream inputStream = null;
-        BufferedReader bufferedReader = null;
         StringBuilder stringBuilder = new StringBuilder();
-        try{
 
-            URL url = new URL(sUrl);
-            httpURLConnection = (HttpURLConnection)url.openConnection();
+        try {
+            URL url = new URL(urlString);
+            HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
             httpURLConnection.setAllowUserInteraction(false);
             httpURLConnection.setInstanceFollowRedirects(true);
             httpURLConnection.setRequestMethod("GET");
-            httpURLConnection.connect();
-            int resCode = httpURLConnection.getResponseCode();
-            if(resCode == HttpURLConnection.HTTP_OK) {
-                inputStream = httpURLConnection.getInputStream();
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line = null;
-                while ((line = bufferedReader.readLine()) != null){
-                    stringBuilder.append(line);
-                }
-            }
-            httpURLConnection.disconnect();
 
-        }catch (IOException e){
-        }finally{
-            if(inputStream != null){
-                try{
-                    inputStream.close();
-                }catch (IOException e){
+            int responseCode = httpURLConnection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                try (InputStream inputStream = httpURLConnection.getInputStream();
+                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream))) {
+
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null) {
+                        stringBuilder.append(line);
+                    }
                 }
             }
-            if(bufferedReader != null){
-                try{
-                    bufferedReader.close();
-                }catch (IOException e){
-                }
-            }
-            if(httpURLConnection != null){
-                try{
-                    httpURLConnection.disconnect();
-                }catch (Exception e){
-                }
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return stringBuilder.toString();
     }
 }

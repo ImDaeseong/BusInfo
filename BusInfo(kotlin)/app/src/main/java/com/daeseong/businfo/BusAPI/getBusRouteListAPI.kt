@@ -78,7 +78,6 @@ class getBusRouteListAPI {
             }
 
         } catch (ex: Exception) {
-            Log.e(tag, ex.message)
             return false
         }
 

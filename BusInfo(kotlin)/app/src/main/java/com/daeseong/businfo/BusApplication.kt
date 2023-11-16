@@ -32,7 +32,7 @@ class BusApplication : Application() {
         }
     }
 
-    var API_Key = "api key"
+    var API_Key = "%2FSWbuoncrZtSM3DaBUA4PJVxqJMFKs0Eu%2F%2FzgFQf8dvVjzIi8ESOjmRaQtAkLKoQUS3S%2BZy%2FwLwR08%2BCT9BWuA%3D%3D"
 
     private var clipboardManager: ClipboardManager? = null
     private var clipData: ClipData? = null
@@ -51,8 +51,10 @@ class BusApplication : Application() {
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
-        super.onConfigurationChanged(newConfig)
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        if (newConfig != null) {
+            super.onConfigurationChanged(newConfig)
+        }
     }
 
     fun Toast(sMsg: String?, bLengthLong: Boolean) {
