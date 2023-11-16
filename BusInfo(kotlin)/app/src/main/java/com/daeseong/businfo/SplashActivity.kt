@@ -4,22 +4,22 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
+import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-
+import java.lang.ref.WeakReference
 
 class SplashActivity : AppCompatActivity() {
 
     private val tag = SplashActivity::class.java.simpleName
 
-    private var handler: Handler? = null
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        InitTitleBar()
+        initTitleBar()
 
         setContentView(R.layout.activity_splash)
 
@@ -27,24 +27,33 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun init() {
+        val activityReference = WeakReference(this)
 
-        handler = Handler()
-        handler!!.postDelayed(
-            {
+        handler.postDelayed({
+            val activity = activityReference.get()
+            activity?.run {
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
-            }, 1000)
+            }
+        }, 1000)
     }
 
-    private fun InitTitleBar() {
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    private fun initTitleBar() {
+        try {
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
+        } catch (ex: Exception) {
+        }
+
+        try {
+            requestWindowFeature(Window.FEATURE_NO_TITLE)
+            window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        } catch (ex: Exception) {
+        }
     }
 
     override fun onBackPressed() {
-        //super.onBackPressed();
+        //super.onBackPressed()
         return
     }
 
@@ -56,10 +65,7 @@ class SplashActivity : AppCompatActivity() {
         super.onDestroy()
 
         try {
-            if (handler != null) {
-                handler!!.removeCallbacksAndMessages(null)
-                handler = null
-            }
+            handler.removeCallbacksAndMessages(null)
         } catch (ex: Exception) {
         }
     }

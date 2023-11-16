@@ -1,7 +1,5 @@
 package com.daeseong.businfo
 
-
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,68 +7,63 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.daeseong.businfo.BusData.getBusRouteListData
+import java.util.ArrayList
 
+class Tab4Adapter(private val getBusRouteListDataList: ArrayList<getBusRouteListData>, private val onItemClickListener: OnItemClickListener) :
+    RecyclerView.Adapter<Tab4Adapter.Tab4ViewHolder>() {
 
-class Tab4Adapter(private val getBusRouteListDataList: ArrayList<getBusRouteListData>?) : RecyclerView.Adapter<Tab4Adapter.Tab4ViewHolder>() {
-
-    private val tag = Tab4Adapter::class.java.simpleName
+    interface OnItemClickListener {
+        fun onItemClick(busRouteId: String)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Tab4ViewHolder {
-
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.item4_cardview, parent, false)
+        val view = inflater.inflate(R.layout.item4_cardview, parent, false)
         return Tab4ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: Tab4ViewHolder, position: Int) {
-
-        holder.tv2!!.text = getBusRouteListDataList!![position].busRouteId
-        holder.tv4!!.text = getBusRouteListDataList[position].busRouteNm
-        holder.tv6!!.text = getBusRouteListDataList[position].edStationNm
-        holder.tv8!!.text = getBusRouteListDataList[position].stStationNm
-        holder.tv10!!.text = getBusRouteListDataList[position].term
-        holder.save1!!.setOnClickListener(object : OnSingleClickListener() {
-            override fun onSingleClick(v: View) {
-                try {
-
-                    BusApplication.getInstance().SetClipboardText(holder.tv2!!.text.toString())
-
-                    BusApplication.getInstance().Toast( "즐겨찾기 항목이 추가 되었습니다.", false)
-                } catch (ex: java.lang.Exception) {
-                }
-            }
-        })
+        holder.bind(getBusRouteListDataList[position])
     }
 
     override fun getItemCount(): Int {
-        return getBusRouteListDataList?.size ?: 0
+        return getBusRouteListDataList.size
     }
 
-    inner class Tab4ViewHolder(item: View) : RecyclerView.ViewHolder(item), View.OnClickListener {
-
-        var save1: ImageView? = null
-        var tv2: TextView? = null
-        var tv4: TextView? = null
-        var tv6: TextView? = null
-        var tv8: TextView? = null
-        var tv10: TextView? = null
+    inner class Tab4ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val save1: ImageView = itemView.findViewById(R.id.save1)
+        private val tv2: TextView = itemView.findViewById(R.id.tv2)
+        private val tv4: TextView = itemView.findViewById(R.id.tv4)
+        private val tv6: TextView = itemView.findViewById(R.id.tv6)
+        private val tv8: TextView = itemView.findViewById(R.id.tv8)
+        private val tv10: TextView = itemView.findViewById(R.id.tv10)
 
         init {
-
-            try {
-                item.setOnClickListener(this)
-                save1 = item.findViewById(R.id.save1)
-                tv2 = item.findViewById(R.id.tv2)
-                tv4 = item.findViewById(R.id.tv4)
-                tv6 = item.findViewById(R.id.tv6)
-                tv8 = item.findViewById(R.id.tv8)
-                tv10 = item.findViewById(R.id.tv10)
-            } catch (ex: Exception) {
+            itemView.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION && onItemClickListener != null) {
+                    onItemClickListener.onItemClick(getBusRouteListDataList[position].busRouteId)
+                }
             }
+
+            save1.setOnClickListener(object : OnSingleClickListener() {
+                override fun onSingleClick(v: View) {
+                    try {
+                        val busRouteId = tv2.text.toString()
+                        BusApplication.getInstance().setClipboardText(busRouteId)
+                        BusApplication.getInstance().showToast("즐겨찾기 항목이 추가 되었습니다.", false)
+                    } catch (ex: Exception) {
+                    }
+                }
+            })
         }
 
-        override fun onClick(v: View?) {
+        fun bind(data: getBusRouteListData) {
+            tv2.text = data.busRouteId
+            tv4.text = data.busRouteNm
+            tv6.text = data.edStationNm
+            tv8.text = data.stStationNm
+            tv10.text = data.term
         }
     }
-
 }

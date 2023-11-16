@@ -1,10 +1,9 @@
 package com.daeseong.businfo
 
-
-
 import android.content.Context
-import android.os.AsyncTask
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,96 +16,94 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.daeseong.businfo.BusAPI.getBusRouteListAPI
 import com.daeseong.businfo.BusData.getBusRouteListData
-
+import java.util.concurrent.Callable
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
+import java.util.concurrent.Future
 
 class MainTab4Fragment : Fragment() {
 
-    companion object {
-        private val tag = MainTab4Fragment::class.java.simpleName
-    }
+    private val TAG = MainTab4Fragment::class.java.simpleName
 
-    private var mContext: Context? = null
-    private var edtBusNum: EditText? = null
-    private var btnSearch: Button? = null
-    private var rv1: RecyclerView? = null
-    private var tab4Adapter: Tab4Adapter? = null
+    private lateinit var mContext: Context
+    private lateinit var edtBusNum: EditText
+    private lateinit var btnSearch: Button
+    private lateinit var rv1: RecyclerView
+    private lateinit var tab4Adapter: Tab4Adapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         mContext = container!!.context
+        val viewGroup = inflater.inflate(R.layout.fragment_main_tab4, container, false)
 
-        val viewGroup = inflater!!.inflate(R.layout.fragment_main_tab4, container, false) as ViewGroup
-        edtBusNum = viewGroup.findViewById<EditText>(R.id.edtBusNum)
-        btnSearch = viewGroup.findViewById<Button>(R.id.btnSearch)
-        rv1 = viewGroup.findViewById<RecyclerView>(R.id.rv1)
+        edtBusNum = viewGroup.findViewById(R.id.edtBusNum)
+        btnSearch = viewGroup.findViewById(R.id.btnSearch)
+        rv1 = viewGroup.findViewById(R.id.rv1)
 
-        btnSearch!!.setOnClickListener(View.OnClickListener {
-
-            try {
-
-                if (!BusApplication.getInstance().isNetworkAvailable(mContext!!)) {
-                    Log.e(tag, "미접속")
-                    return@OnClickListener
-                }
-
-                val sBusNum = edtBusNum!!.text.toString().trim { it <= ' ' }
-                if (TextUtils.isEmpty(sBusNum)) {
-                    return@OnClickListener
-                }
-
-                getBusRouteListTask().execute(sBusNum)
-
-            } catch (ex: Exception) {
-            }
-        })
+        btnSearch.setOnClickListener {
+            handleSearchButtonClick()
+        }
 
         return viewGroup
     }
 
-    inner class getBusRouteListTask : AsyncTask<String?, Void?, ArrayList<getBusRouteListData>?>() {
-
-        override fun onPreExecute() {
-            super.onPreExecute()
-
-            Log.e(tag, "onPreExecute")
-        }
-
-        override fun doInBackground(vararg params: String?): ArrayList<getBusRouteListData>? {
-
-            Log.e(tag, "doInBackground")
-
-            var arrayList: ArrayList<getBusRouteListData>? = null
-            val sbusRouteId = params[0]
-
-            val API = getBusRouteListAPI()
-            if(API.getData(sbusRouteId!!)){
-                arrayList = API.allList
+    private fun handleSearchButtonClick() {
+        try {
+            if (!BusApplication.getInstance().isNetworkAvailable(mContext)) {
+                return
             }
-            return arrayList
-        }
 
-        override fun onPostExecute(arrayList: ArrayList<getBusRouteListData>?) {
-            super.onPostExecute(arrayList)
-
-            Log.e(tag, "onPostExecute")
-
-            try {
-
-                edtBusNum!!.setText("")
-                (activity as MainActivity?)!!.hideKeyboard()
-
-                tab4Adapter = Tab4Adapter(arrayList)
-                rv1!!.layoutManager = LinearLayoutManager(mContext)
-                rv1!!.adapter = tab4Adapter
-
-            } catch (ex: java.lang.Exception) {
+            val sBusNum = edtBusNum.text.toString().trim()
+            if (TextUtils.isEmpty(sBusNum)) {
+                return
             }
+
+            // Callable 백그라운드
+            executeAsyncTask(sBusNum)
+
+        } catch (ex: Exception) {
         }
+    }
 
-        override fun onProgressUpdate(vararg values: Void?) {
-            super.onProgressUpdate(*values)
+    // Callable 백그라운드
+    private fun executeAsyncTask(sBusNum: String) {
+        try {
+            val callable = Callable<ArrayList<getBusRouteListData>> {
+                val getBusRouteListAPI = getBusRouteListAPI()
+                getBusRouteListAPI.getData(sBusNum)
+            }
 
-            Log.e(tag, "onProgressUpdate" + values[0])
+            val executorService: ExecutorService = Executors.newSingleThreadExecutor()
+            val future: Future<ArrayList<getBusRouteListData>> = executorService.submit(callable)
+
+            val mainHandler = Handler(Looper.getMainLooper())
+            mainHandler.post {
+                try {
+                    val result: ArrayList<getBusRouteListData> = future.get()
+                    updateUI(result)
+                } catch (e: Exception) {
+                } finally {
+                    executorService.shutdown()
+                }
+            }
+        } catch (ex: Exception) {
+        }
+    }
+
+    private fun updateUI(arrayList: ArrayList<getBusRouteListData>) {
+        try {
+            edtBusNum.text.clear()
+            (activity as MainActivity).hideKeyboard()
+
+            tab4Adapter = Tab4Adapter(arrayList, object : Tab4Adapter.OnItemClickListener {
+                override fun onItemClick(busRouteId: String) {
+                    Log.e(TAG, busRouteId)
+                }
+            })
+            rv1.layoutManager = LinearLayoutManager(mContext)
+            rv1.adapter = tab4Adapter
+
+        } catch (e: Exception) {
         }
     }
 

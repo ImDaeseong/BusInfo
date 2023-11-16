@@ -3,85 +3,79 @@ package com.daeseong.businfo.BusAPI
 import android.util.Log
 import com.daeseong.businfo.BusApplication
 import com.daeseong.businfo.BusData.getBusRouteListData
-import com.daeseong.businfo.HttpUtil.GetBusDataResult
+import com.daeseong.businfo.HttpUtil
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserFactory
-
+import java.io.ByteArrayInputStream
+import java.io.InputStream
+import java.io.InputStreamReader
 
 class getBusRouteListAPI {
 
     private val tag = getBusRouteListAPI::class.java.simpleName
 
-    val allList = ArrayList<getBusRouteListData>()
+    private val allList = ArrayList<getBusRouteListData>()
 
-    fun getData(sbusNum: String): Boolean {
+    fun getData(sbusNum: String): ArrayList<getBusRouteListData> {
 
         try {
             val defaulturl = "http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList?"
-            val strSrch = String.format("strSrch=%s", sbusNum)
-            val ServiceKey = java.lang.String.format("&ServiceKey=%s", BusApplication.getInstance().API_Key)
-            val sUrlParams = String.format("%s%s%s", defaulturl, strSrch, ServiceKey)
-            val sResult = GetBusDataResult(sUrlParams)
+            val strSrch = "strSrch=$sbusNum"
+            val serviceKey = "&ServiceKey=${BusApplication.getInstance().API_Key}"
+            val sUrlParams = "$defaulturl$strSrch$serviceKey"
+            val sResult = HttpUtil.getBusDataResult(sUrlParams)
 
-            //Log.e(tag, sResult)
+            val inputStream: InputStream = ByteArrayInputStream(sResult.toByteArray())
 
-            val factory = XmlPullParserFactory.newInstance()
-            factory.isNamespaceAware= true
-            val xpp = factory.newPullParser()
-            xpp.setInput(sResult.reader())
-            var eventType = xpp.eventType
+            val xmlPullParserFactory = XmlPullParserFactory.newInstance()
+            val xmlPullParser = xmlPullParserFactory.newPullParser()
+            xmlPullParser.setInput(InputStreamReader(inputStream, "UTF-8"))
 
-            var bStart =false
-            var textValue = ""
+            var item: getBusRouteListData? = null
 
-            var currentItem = getBusRouteListData()
-
-            while(eventType!= XmlPullParser.END_DOCUMENT ){
-
-                val tagName= xpp.name
-                //Log.e(tag, "tagName:$tagName")
-
-                when(eventType){
-
+            var nType = xmlPullParser.eventType
+            while (nType != XmlPullParser.END_DOCUMENT) {
+                when (nType) {
                     XmlPullParser.START_TAG -> {
+                        val sTag = xmlPullParser.name.trim()
+                        if (sTag == "itemList") {
+                            item = getBusRouteListData()
+                        }
 
-                        if( tagName== "itemList" ){
-                            bStart = true
+                        if (sTag == "busRouteId") {
+                            if (item != null) item.busRouteId = xmlPullParser.nextText()
+                        }
+
+                        if (sTag == "busRouteNm") {
+                            if (item != null) item.busRouteNm = xmlPullParser.nextText()
+                        }
+
+                        if (sTag == "edStationNm") {
+                            if (item != null) item.edStationNm = xmlPullParser.nextText()
+                        }
+
+                        if (sTag == "stStationNm") {
+                            if (item != null) item.stStationNm = xmlPullParser.nextText()
+                        }
+
+                        if (sTag == "term") {
+                            if (item != null) item.term = xmlPullParser.nextText()
                         }
                     }
 
-                    XmlPullParser.TEXT -> textValue = xpp.text
-
-                    XmlPullParser.END_TAG ->{
-
-                        when(tagName){
-
-                            "itemList" -> {
-
-                                if(bStart){
-
-                                    allList.add(currentItem)
-                                    bStart = false
-                                }
-                            }
-
-                            "busRouteId" -> currentItem.busRouteId = textValue
-                            "busRouteNm" -> currentItem.busRouteNm = textValue
-                            "edStationNm"-> currentItem.edStationNm= textValue
-                            "stStationNm" -> currentItem.stStationNm= textValue
-                            "term" -> currentItem.term = textValue
+                    XmlPullParser.END_TAG -> {
+                        val eTag = xmlPullParser.name.trim()
+                        if (eTag == "itemList" && item != null) {
+                            allList.add(item)
                         }
                     }
                 }
-
-                eventType= xpp.next()
+                nType = xmlPullParser.next()
             }
 
         } catch (ex: Exception) {
-            return false
+            Log.i(tag, "ERR: ${ex.message}")
         }
-
-        return true
+        return allList
     }
-
 }

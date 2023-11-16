@@ -10,9 +10,9 @@ import java.io.ByteArrayInputStream
 import java.io.InputStream
 import java.io.InputStreamReader
 
-class getArrInfoByRouteAllAPI {
+class getArrInfomainAPI {
 
-    private val tag = getArrInfoByRouteAllAPI::class.java.simpleName
+    private val tag = getArrInfomainAPI::class.java.simpleName
 
     private val allList = ArrayList<getArrInfoByRouteAllData>()
 
@@ -70,7 +70,11 @@ class getArrInfoByRouteAllAPI {
                     XmlPullParser.END_TAG -> {
                         val eTag = xmlPullParser.name.trim()
                         if (eTag == "itemList") {
-                            allList.add(item!!)
+                            if (item != null && (item.stNm.contains("가산디지털단지역") || item.stNm.contains("두산어린이공원") ||
+                                        item.stNm.contains("영등포소방서") || item.stNm.contains("영등포시장") ||
+                                        item.stNm.contains("일산동구청") || item.stNm.contains("마두역"))) {
+                                allList.add(item)
+                            }
                         }
                     }
                 }

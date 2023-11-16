@@ -1,7 +1,7 @@
 package com.daeseong.businfo
 
-
 import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,26 +10,23 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
-
 
 class MainActivity : AppCompatActivity() {
 
     private val tag = MainActivity::class.java.simpleName
 
-    private var include: View? = null
-    private var Main_tabLayout: TabLayout? = null
-    private var Main_viewPager: SwipeViewPager? = null
+    private lateinit var include: View
+    private lateinit var mainTabLayout: TabLayout
+    private lateinit var mainViewPager: SwipeViewPager
     private var mainPagerAdapter: MainPagerAdapter? = null
-    private var nCurrentIndex = 0
+    private var currentTabIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        InitTitleBar()
+        initTitleBar()
 
         setContentView(R.layout.activity_main)
 
@@ -39,88 +36,76 @@ class MainActivity : AppCompatActivity() {
         setInitTabLayout()
     }
 
-    private fun InitTitleBar() {
-
+    private fun initTitleBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window: Window = window
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = ContextCompat.getColor(this, R.color.statusbar_bg)
+            window.statusBarColor = Color.rgb(255, 255, 255)
         }
-        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        try {
+            // 안드로이드 8.0 오레오 버전에서만 오류 발생
+            requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
+        } catch (ex: Exception) {
+        }
     }
 
     private fun init() {
-
-        //탭
-        Main_tabLayout = findViewById<TabLayout>(R.id.maintabLayout)
-
-        //하단 뷰 페이지
-        Main_viewPager = findViewById<SwipeViewPager>(R.id.mainviewPager)
+        mainTabLayout = findViewById(R.id.maintabLayout)
+        mainViewPager = findViewById(R.id.mainviewPager)
         include = findViewById(R.id.include_maintoolbar)
 
-        val cLbusmenu = include!!.findViewById(R.id.cLbusmenu) as View
-        cLbusmenu.setOnClickListener(object : OnSingleClickListener() {
-
-            override fun onSingleClick(view: View) {
-                try {
-
-                } catch (ex: Exception) {
-                }
+        val cLbusmenu: View = include.findViewById(R.id.cLbusmenu)
+        cLbusmenu.setOnClickListener {
+            try {
+                Log.e(tag, "상단 메뉴 클릭")
+            } catch (ex: Exception) {
             }
-        })
-
+        }
     }
 
     private fun setViewPager() {
         mainPagerAdapter = MainPagerAdapter(supportFragmentManager)
-        Main_viewPager!!.adapter = mainPagerAdapter
-        Main_tabLayout!!.setupWithViewPager(Main_viewPager)
+        mainViewPager.adapter = mainPagerAdapter
+        mainTabLayout.setupWithViewPager(mainViewPager)
     }
 
     private fun setInitTabLayout() {
-
-        Main_tabLayout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
-
+        mainTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-
                 try {
-
-                    nCurrentIndex = tab.position
-                    Main_viewPager!!.currentItem = nCurrentIndex
-                } catch (ex: java.lang.Exception) {
+                    currentTabIndex = tab.position
+                    mainViewPager.currentItem = currentTabIndex
+                } catch (ex: Exception) {
                 }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab) {}
+
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
         val viewPagerPageChangeListener: OnPageChangeListener = object : OnPageChangeListener {
-
             override fun onPageSelected(position: Int) {
-
-                //Log.e(tag, "onPageSelected:$position")
+                Log.e(tag, "onPageSelected:$position")
             }
 
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-
             }
 
             override fun onPageScrollStateChanged(state: Int) {}
         }
-        Main_viewPager!!.addOnPageChangeListener(viewPagerPageChangeListener)
+        mainViewPager.addOnPageChangeListener(viewPagerPageChangeListener)
     }
 
     fun hideKeyboard() {
-
         try {
-
-            if (currentFocus != null) {
-                val inputMethodManager: InputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(currentFocus!!.windowToken, 0)
+            currentFocus?.let {
+                val inputMethodManager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                inputMethodManager.hideSoftInputFromWindow(it.windowToken, 0)
             }
-        } catch (ex: java.lang.Exception) {
+        } catch (ex: Exception) {
         }
     }
-
 }

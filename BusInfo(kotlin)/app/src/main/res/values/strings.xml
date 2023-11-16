@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">BusInfo</string>
     <string name="title_activity_splash">SplashActivity</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="route_id_1">117900003</string>
+    <string name="route_id_2">218000010</string>
+    <string name="route_id_3">100100400</string>
+    <string name="route_id_4">229000017</string>
 </resources>

@@ -1,6 +1,5 @@
 package com.daeseong.businfo
 
-
 import android.app.Application
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -10,117 +9,95 @@ import android.graphics.Color
 import android.net.ConnectivityManager
 import android.view.Gravity
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 
-
 class BusApplication : Application() {
 
-    private val tag: String = BusApplication::class.java.simpleName
-
     companion object {
-        private lateinit var mContext: Context
+
         private lateinit var mInstance: BusApplication
+        private lateinit var mContext: Context
+        private var toast: Toast? = null
 
-        fun getContext(): Context {
-            return mContext.applicationContext
-        }
+        private lateinit var clipboardManager: ClipboardManager
+        private lateinit var clipData: ClipData
 
+        @JvmStatic
         fun getInstance(): BusApplication {
             return mInstance
         }
     }
 
-    var API_Key = "%2FSWbuoncrZtSM3DaBUA4PJVxqJMFKs0Eu%2F%2FzgFQf8dvVjzIi8ESOjmRaQtAkLKoQUS3S%2BZy%2FwLwR08%2BCT9BWuA%3D%3D"
-
-    private var clipboardManager: ClipboardManager? = null
-    private var clipData: ClipData? = null
-
-    private var toast: Toast? = null
+    val API_Key = "%2FSWbuoncrZtSM3DaBUA4PJVxqJMFKs0Eu%2F%2FzgFQf8dvVjzIi8ESOjmRaQtAkLKoQUS3S%2BZy%2FwLwR08%2BCT9BWuA%3D%3D"
 
     override fun onCreate() {
         super.onCreate()
 
-        mContext = this
         mInstance = this
+        mContext = applicationContext
 
         try {
-            clipboardManager = getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+            clipboardManager = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
         } catch (e: Exception) {
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration) {
-        if (newConfig != null) {
-            super.onConfigurationChanged(newConfig)
-        }
-    }
+    fun showToast(sMsg: String, isLengthLong: Boolean) {
+        val inflater = mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        var view = inflater.inflate(R.layout.toast_layout, null)
 
-    fun Toast(sMsg: String?, bLengthLong: Boolean) {
+        val tvToast = view.findViewById<TextView>(R.id.tvtoast)
+        tvToast.maxLines = 1
+        tvToast.setTextColor(Color.parseColor("#000000"))
+        tvToast.text = sMsg
 
-        val inflater = mContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val view: View = inflater.inflate(R.layout.toast_layout, null)
-        val tvtoast: TextView = view.findViewById(R.id.tvtoast)
-
-        //최대 1줄까지
-        tvtoast.maxLines = 1
-        tvtoast.setTextColor(Color.parseColor("#000000"))
-        tvtoast.text = sMsg
         toast = Toast(mContext)
-        toast!!.setGravity(Gravity.BOTTOM, 0, 0)
-
-        if (bLengthLong) {
-            toast!!.duration = Toast.LENGTH_LONG
-        } else {
-            toast!!.duration = Toast.LENGTH_SHORT
-        }
-
-        toast!!.view = view
-        toast!!.show()
-    }
-
-    fun Toastcancel() {
-
-        try {
-            toast!!.cancel()
-        } catch (e: java.lang.Exception) {
+        toast?.apply {
+            setGravity(Gravity.BOTTOM, 0, 0)
+            duration = if (isLengthLong) Toast.LENGTH_LONG else Toast.LENGTH_SHORT
+            view = view
+            show()
         }
     }
 
-    fun SetClipboardText(sInput: String?) {
-
+    fun cancelToast() {
         try {
-            clipData = ClipData.newPlainText("text", sInput)
-            clipboardManager!!.setPrimaryClip(clipData!!)
-        } catch (ex: java.lang.Exception) {
+            toast?.cancel()
+        } catch (e: Exception) {
         }
     }
 
-    fun GetClipboardText(): String? {
-
-        var sData = ""
+    fun setClipboardText(input: String) {
         try {
-            if (clipboardManager!!.hasPrimaryClip()) {
-                clipData = clipboardManager!!.primaryClip
-                val item = clipData!!.getItemAt(0)
-                sData = item.text.toString()
+            clipData = ClipData.newPlainText("text", input)
+            clipboardManager.setPrimaryClip(clipData)
+        } catch (ex: Exception) {
+        }
+    }
 
-                if (!String_util.isNumeric(sData)) {
-                    sData = ""
+    fun getClipboardText(): String {
+        var data = ""
+        try {
+            if (clipboardManager.hasPrimaryClip()) {
+                clipData = clipboardManager.primaryClip!!
+                val item = clipData.getItemAt(0)
+                data = item.text.toString()
+
+                if (!String_util.isNumeric(data)) {
+                    data = ""
                 }
             }
-        } catch (ex: java.lang.Exception) {
+        } catch (ex: Exception) {
         }
-        return sData
+        return data
     }
 
-    fun ClearClipboardText() {
-
+    fun clearClipboardText() {
         try {
-            val data = ClipData.newPlainText("", "")
-            clipboardManager!!.setPrimaryClip(data)
-        } catch (ex: java.lang.Exception) {
+            clipData = ClipData.newPlainText("", "")
+            clipboardManager.setPrimaryClip(clipData)
+        } catch (ex: Exception) {
         }
     }
 
@@ -128,5 +105,9 @@ class BusApplication : Application() {
         val connectivityManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
         return networkInfo != null && networkInfo.isConnected
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
     }
 }

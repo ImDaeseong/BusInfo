@@ -3,37 +3,28 @@ package com.daeseong.businfo
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
-
 import androidx.viewpager.widget.ViewPager
 
-
 class SwipeViewPager : ViewPager {
+    private var isPagingEnabled: Boolean = true
 
-    private var enabled: Boolean? = false
-
-    constructor(context: Context?) : super(context!!) {
-        enabled = true
+    constructor(context: Context) : super(context) {
+        this.isPagingEnabled = true
     }
 
-    constructor(context: Context?, attrs: AttributeSet?) : super(context!!, attrs) {
-        enabled = true
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        this.isPagingEnabled = true
     }
 
     override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
-        if (this.enabled!!) {
-            return super.onInterceptTouchEvent(ev);
-        }
-        return false
+        return isPagingEnabled && super.onInterceptTouchEvent(ev)
     }
 
     override fun onTouchEvent(ev: MotionEvent): Boolean {
-        if (this.enabled!!) {
-            return super.onTouchEvent(ev);
-        }
-        return false
+        return isPagingEnabled && super.onTouchEvent(ev)
     }
 
-    fun setPagingEnabled(enabled: Boolean) {
-        this.enabled = enabled
+    fun setPagingEnabled(isPagingEnabled: Boolean) {
+        this.isPagingEnabled = isPagingEnabled
     }
 }
